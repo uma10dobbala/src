@@ -1,0 +1,46 @@
+<h1> Sign Up</h1>
+<form #myform=ngForm (ngSubmit)= "addUser(myform)">
+<div>
+    <label>User Name</label>
+    <input name="UserName" ngModel #UserNameCtrl=ngModel required minlength="2">
+</div>
+
+<div *ngIf="UserNameCtrl.errors!=null && UserNameCtrl.errors.required "class="error">
+    UserName is required
+ </div>
+ 
+<div *ngIf="UserNameCtrl.errors!=null && UserNameCtrl.errors.minlength "class="error">
+   minimum length should be 2
+</div>
+
+<div> 
+    <label>User Type</label>
+   <br>
+   <input name="UserType" ngModel #UserTypeCtrl=ngModel required>
+    <input type="radio" name="UserType" value="user"> User
+  <input type="radio" name="UserType" value="admin"> Admin<br>
+</div>
+
+<div *ngIf="UserTypeCtrl.errors!=null && UserTypeCtrl.errors.required "class="error">
+    type is required
+</div>
+
+<div *ngIf="UserPasswordCtrl.errors!=null && UserPasswordCtrl.errors.required "class="error">
+    password is required
+ </div>
+
+<div>
+    <label>password</label>
+    <input name="UserPassword" ngModel #UserPasswordCtrl=ngModel required minlength="5">
+</div>
+
+<div *ngIf="UserPasswordCtrl.errors!=null && UserPasswordCtrl.errors.minlength "class="error">
+    minimum length should be 5
+ </div>
+
+<input type="submit" value = "submit">
+</form>
+<h3>Details submitted</h3>
+<div *ngIf="users!==undefined">
+{{users.UserName}} {{users.UserType}} {{users.UserPassword}}
+</div>
